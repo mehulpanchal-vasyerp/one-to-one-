@@ -5,9 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import com.example.peopledl.model.People;
 
-
-
 @Repository
-public interface PeopleRepo1  extends JpaRepository<People, Long>{ 
+public interface PeopleRepo1 extends JpaRepository<People, Long> {
 
 }
