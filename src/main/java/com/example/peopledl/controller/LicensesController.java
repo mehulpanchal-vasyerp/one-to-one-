@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.peopledl.dto.Licensesdto;
+import com.example.peopledl.dto.Response;
 import com.example.peopledl.model.People;
 import com.example.peopledl.service.LicensesService;
 
@@ -37,15 +38,16 @@ public class LicensesController {
 
 
 	@DeleteMapping("/delete")
-	public ResponseEntity<String> dellicenses(@RequestParam Long LicensesId) {
+	public Response deleteLicensesById(@RequestParam Long LicensesId) {
 		licensesService.deleteLicensesById(LicensesId);
-		return ResponseEntity.ok(" delete successful");
+		return new Response(200,"success","Delete Suuccessful");
 
 	}
 
 	@GetMapping("/get")
-	public ResponseEntity<Licensesdto> getlicensesById(@RequestParam Long LicensesId) {
-		return ResponseEntity.ok(licensesService.getLicensesById(LicensesId));
+	public Response get(@RequestParam Long LicensesId) {
+		Licensesdto licensesdto=licensesService.getLicensesById(LicensesId);
+		return new Response(200,"success",licensesdto);
 
 	}
 }

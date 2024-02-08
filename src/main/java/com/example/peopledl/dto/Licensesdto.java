@@ -1,11 +1,12 @@
 package com.example.peopledl.dto;
 
 import lombok.Data;
+
 @Data
 public class Licensesdto {
-	
+
 	private Long LicensesId;
-	private String LicenseExdate ;
+	private String LicenseExdate;
 
 	@Override
 	public String toString() {

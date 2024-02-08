@@ -10,6 +10,9 @@ import com.example.peopledl.dto.Licensesdto;
 import com.example.peopledl.model.Licenses;
 import com.example.peopledl.repository.LicensesRepo;
 
+import exception.LicensesNotFoundException;
+import exception.PeopleNotFoundException;
+
 @Service
 public class LicensesServiceImpl implements LicensesService{
 
@@ -31,13 +34,22 @@ public class LicensesServiceImpl implements LicensesService{
 
 	@Override
 	public void deleteLicensesById(Long LicensesId) {
-		licensesRepo.deleteById(LicensesId);
 		
-	}
+		//licensesRepo.deleteById(LicensesId);
+		if(licensesRepo.existsById(LicensesId)) {
+			licensesRepo.deleteById(LicensesId);
+			}
+			else {
+				throw new LicensesNotFoundException("License not found");
+			}
+			
+		}
+		
+	
 
 	@Override
 	public Licensesdto getLicensesById(Long LicensesId) {
-		Licenses license=licensesRepo.findById(LicensesId).get();
+		Licenses license=licensesRepo.findById(LicensesId).orElseThrow(()->new PeopleNotFoundException("licenses not found"));;
 		Licensesdto licensesdto=new Licensesdto();
 		licensesdto.setLicensesId(license.getLicensesId());
 		licensesdto.setLicenseExdate(license.getLicenseExdate());
