@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.example.peopledl.dto.Response;
+import com.example.peopledl.exception.LicensesNotFoundException;
+import com.example.peopledl.exception.PeopleNotFoundException;
 
-import exception.LicensesNotFoundException;
-import exception.PeopleNotFoundException;
 
 @RestControllerAdvice
 public class CustomExceptionHandler {

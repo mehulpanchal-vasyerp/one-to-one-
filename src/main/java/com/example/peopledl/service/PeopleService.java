@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.peopledl.dto.Peopledto;
+import com.example.peopledl.model.People;
 
 @Component
 public interface PeopleService {
@@ -15,7 +16,7 @@ public interface PeopleService {
 
 	Peopledto getPeopleBypeopleId(Long peopleId);
 
-	boolean deletePeopleBypeopleId(Long peopleId);
+	People deletePeopleBypeopleId(Long peopleId);
 
 	boolean addPeople(Peopledto peopledto);
 

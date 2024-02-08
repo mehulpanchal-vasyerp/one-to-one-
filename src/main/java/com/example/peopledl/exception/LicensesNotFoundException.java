@@ -1,4 +1,5 @@
-package exception;
+package com.example.peopledl.exception;
+
 
 public class LicensesNotFoundException extends RuntimeException{
 	public LicensesNotFoundException(String message) {

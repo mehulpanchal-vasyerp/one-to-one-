@@ -43,28 +43,26 @@ public class PeopleController {
 
 	@DeleteMapping("/delete")
 	public Response deletebyid(@RequestParam Long peopleId) {
-		 peoService.deletePeopleBypeopleId(peopleId);
-		return new Response(200,"success","Delete Suuccessful");
-		
-		
-		//peoService.deletePeopleBypeopleId(peopleId);
-		//return ResponseEntity.ok(" delete successful");
+		peoService.deletePeopleBypeopleId(peopleId);
+		return new Response(200, "success", "Delete Suuccessful");
+
+		// peoService.deletePeopleBypeopleId(peopleId);
+		// return ResponseEntity.ok(" delete successful");
 
 	}
 
 	@GetMapping("/get")
-<<<<<<< HEAD:src/main/java/com/example/peopledl/controller/PeopleController.java
 	public Response get(@RequestParam Long peopleId) {
 		Peopledto peopledto= peoService.getPeopleBypeopleId(peopleId);
 	
 	//public ResponseEntity<Peopledto> get(@RequestParam Long peopleId) {
 		return new Response(200,"success",peopledto);
-=======
-	public ResponseEntity<Peopledto> get(@RequestParam Long peopleId) {
-		return ResponseEntity.ok(peoService.getPeopleBypeopleId(peopleId));
->>>>>>> 8413a936b4cb690862d7e909cefae43bfa453c54:java/com/example/peopledl/controller/PeopleController.java
-
 	}
+
+//	public ResponseEntity<Peopledto> get(@RequestParam Long peopleId) {
+//		return ResponseEntity.ok(peoService.getPeopleBypeopleId(peopleId));
+//
+//	}
 
 	@PostMapping("/assign")
 	public ResponseEntity<String> assignPeople(@RequestParam Long peopleId, @RequestParam Long LicensesId) {
@@ -72,14 +70,8 @@ public class PeopleController {
 		return ResponseEntity.ok("Assign Success");
 	}
 
-	// @PostMapping("/uploadFile")
-	// public ResponseEntity<String> uploadfile(@RequestParam ("myfile")
-	// MultipartFile myfile) {
-	// return ResponseEntity.ok("file upload successfully .Download
-	// URL:"+fileDownloaddUri);
-<<<<<<< HEAD:src/main/java/com/example/peopledl/controller/PeopleController.java
-
 	@PostMapping("/upload")
+
 	public ResponseEntity<String> uploadFile(@RequestParam("file") MultipartFile file) {
 		// Implement logic to save the file, e.g., store it in the file system or
 		// database
@@ -108,37 +100,9 @@ public class PeopleController {
 //	peoService.uploadFile(file);
 		return ResponseEntity.ok(peoService.uploadFile1(file));
 	}
-}
-=======
->>>>>>> 8413a936b4cb690862d7e909cefae43bfa453c54:java/com/example/peopledl/controller/PeopleController.java
 
-	@PostMapping("/upload")
-	public ResponseEntity<String> uploadFile(@RequestParam("file") MultipartFile file) {
-		// Implement logic to save the file, e.g., store it in the file system or
-		// database
-		// Return a success message or error message accordingly
-//		String fileName = file.getOriginalFilename();
-//		System.out.println("Uploaded file name: " + fileName);
-//		peoService.uploadFile(file);
-		return ResponseEntity.ok(peoService.uploadFile(file));
 
-	}
 
-	@GetMapping("/download/{fileName}")
-	public ResponseEntity<Object> downloadFile(@PathVariable String fileName) {
-		ResponseEntity<Object> response = peoService.downloadFile(fileName);
-		return response;
 
-	}
-
-	@PostMapping("/uploads")
-	public ResponseEntity<String> uploadFile1(@RequestParam("file") MultipartFile file) throws IOException {
-		// Implement logic to save the file, e.g., store it in the file system or
-		// database
-		// Return a success message or error message accordingly
-//	String fileName = file.getOriginalFilename();
-//	System.out.println("Uploaded file name: " + fileName);
-//	peoService.uploadFile(file);
-		return ResponseEntity.ok(peoService.uploadFile1(file));
-	}
+	
 }

@@ -22,12 +22,11 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.example.peopledl.dto.Peopledto;
+import com.example.peopledl.exception.PeopleNotFoundException;
 import com.example.peopledl.model.Licenses;
 import com.example.peopledl.model.People;
 import com.example.peopledl.repository.LicensesRepo;
 import com.example.peopledl.repository.PeopleRepo1;
-
-import exception.PeopleNotFoundException;
 
 @Service
 public class PeopleServiceimpl implements PeopleService {
@@ -53,7 +52,8 @@ public class PeopleServiceimpl implements PeopleService {
 
 	@Override
 	public Peopledto getPeopleBypeopleId(Long peopleId) {
-		People people = peopleRepo.findById(peopleId).orElseThrow(()->new PeopleNotFoundException("people not found"));
+		People people = peopleRepo.findById(peopleId)
+				.orElseThrow(() -> new PeopleNotFoundException("People not found"));
 		Peopledto peopledto = new Peopledto();
 		peopledto.setPeopleId(people.getPeopleId()); // model to dto
 		peopledto.setPeopleName(people.getPeopleName());
@@ -62,14 +62,11 @@ public class PeopleServiceimpl implements PeopleService {
 	}
 
 	@Override
-	public boolean deletePeopleBypeopleId(Long peopleId) {
-		if(peopleRepo.existsById(peopleId)) {
+	public People deletePeopleBypeopleId(Long peopleId) {
+		People people = peopleRepo.findById(peopleId)
+				.orElseThrow(() -> new PeopleNotFoundException("People not found"));
 		peopleRepo.deleteById(peopleId);
-		}
-		else {
-			throw new PeopleNotFoundException("people not found");
-		}
-		return true;
+		return people;
 	}
 
 	@Override

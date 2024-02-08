@@ -1,4 +1,5 @@
-package exception;
+package com.example.peopledl.exception;
+
 
 public class PeopleNotFoundException  extends RuntimeException{
 	public PeopleNotFoundException(String message) {
